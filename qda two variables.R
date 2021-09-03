@@ -1,5 +1,6 @@
 library(retistruct)
 library(MASS)
+library(klaR)
 #set.seed(430)
 Data=iris
 iris_trn=Data
@@ -19,6 +20,7 @@ legend("bottomright",cex = 0.7,legend=c("setosa","versicolor","virginica"),col=c
 ######################################### 22 (13)
 library(retistruct)
 library(MASS)
+library(klaR)
 #set.seed(430)
 Data=iris
 iris_trn=Data
@@ -38,6 +40,7 @@ legend("bottomright",cex = 0.7,legend=c("setosa","versicolor","virginica"),col=c
 ######################################### 23 (14)
 library(retistruct)
 library(MASS)
+library(klaR)
 #set.seed(430)
 Data=iris
 iris_trn=Data
@@ -57,6 +60,7 @@ legend("bottomright",cex = 0.7,legend=c("setosa","versicolor","virginica"),col=c
 ############################################ 24 (23)
 library(retistruct)
 library(MASS)
+library(klaR)
 #set.seed(430)
 Data=iris
 iris_trn=Data
@@ -76,6 +80,7 @@ legend("bottomright",cex = 0.7,legend=c("setosa","versicolor","virginica"),col=c
 ##############################################25 (24)
 library(retistruct)
 library(MASS)
+library(klaR)
 #set.seed(430)
 Data=iris
 iris_trn=Data
@@ -95,6 +100,7 @@ legend("bottomright",cex = 0.7,legend=c("setosa","versicolor","virginica"),col=c
 ######################################## 26 (34)
 library(retistruct)
 library(MASS)
+library(klaR)
 #set.seed(430)
 Data=iris
 iris_trn=Data
