@@ -1,0 +1,182 @@
+##########################21(12)
+library(MASS)
+library(tidyverse)
+library(ggplot2)
+Data=iris
+traindata=Data
+testdata=Data
+Test=testdata[,1:2]
+newdf <- data.frame(Sepal.Length=Test[,1],Sepal.Width=Test[,2])
+r1=lda(Species ~ Sepal.Length + Sepal.Width,data=traindata)
+r2=predict(object=r1,newdf)
+T=table(testdata[,5],r2$class)
+T
+misclaserror=1-sum(diag(T))/sum(T)
+misclaserror
+datPred<-data.frame(Species=testdata$Species,r2$x) #create data.frame
+r3 <- lda(datPred[,2:3], datPred[,1])
+x <- seq(min(datPred[,2]), max(datPred[,2]), length.out=150)
+y <- seq(min(datPred[,3]), max(datPred[,3]), length.out=150)
+Xcon <- matrix(c(rep(x,length(y)),
+                 rep(y, rep(length(x), length(y)))),,2)
+r3.pr1 <- predict(r3, Xcon)$post[, c("setosa","versicolor")] %*% c(1,1) 
+r3.pr2 <- predict(r3, Xcon)$post[, c("virginica","setosa")] %*% c(1,1)
+pr3<-data.frame(x=rep(x, length(y)), y=rep(y, each=length(x)), 
+                z1=as.vector(r3.pr1), z2=as.vector(r3.pr2))
+ggplot(datPred, aes(x=LD1, y=LD2) ) + 
+  geom_point(size = 2, aes(pch = Species,  col=Species)) +
+  geom_contour(data=pr3, aes(x=x, y=y, z=z1), breaks=c(0,.5)) + 
+  geom_contour(data=pr3, aes(x=x, y=y, z=z2), breaks=c(0,.5))+
+  labs(title="Classification Based on X1 and X2")
+###################################### 22(13)
+##########################
+library(MASS)
+library(tidyverse)
+library(ggplot2)
+Data=iris
+traindata=Data
+testdata=Data
+Test=testdata[,c(1,3)]
+newdf <- data.frame(Sepal.Length=Test[,1],Petal.Length=Test[,2])
+r1=lda(Species ~ Sepal.Length + Petal.Length,data=traindata)
+r2=predict(object=r1,newdf)
+T=table(testdata[,5],r2$class)
+T
+misclaserror=1-sum(diag(T))/sum(T)
+misclaserror
+datPred<-data.frame(Species=testdata$Species,r2$x) #create data.frame
+r3 <- lda(datPred[,2:3], datPred[,1])
+x <- seq(min(datPred[,2]), max(datPred[,2]), length.out=150)
+y <- seq(min(datPred[,3]), max(datPred[,3]), length.out=150)
+Xcon <- matrix(c(rep(x,length(y)),
+                 rep(y, rep(length(x), length(y)))),,2)
+r3.pr1 <- predict(r3, Xcon)$post[, c("setosa","versicolor")] %*% c(1,1) 
+r3.pr2 <- predict(r3, Xcon)$post[, c("virginica","setosa")] %*% c(1,1)
+pr3<-data.frame(x=rep(x, length(y)), y=rep(y, each=length(x)), 
+                z1=as.vector(r3.pr1), z2=as.vector(r3.pr2))
+ggplot(datPred, aes(x=LD1, y=LD2) ) + 
+  geom_point(size = 2, aes(pch = Species,  col=Species)) +
+  geom_contour(data=pr3, aes(x=x, y=y, z=z1), breaks=c(0,.5)) + 
+  geom_contour(data=pr3, aes(x=x, y=y, z=z2), breaks=c(0,.5))+
+  labs(title="Classification Based on X1 and X3")
+############################23(14)
+library(MASS)
+library(tidyverse)
+library(ggplot2)
+Data=iris
+traindata=Data
+testdata=Data
+Test=testdata[,c(1,4)]
+newdf <- data.frame(Sepal.Length=Test[,1],Petal.Width=Test[,2])
+r1=lda(Species ~ Sepal.Length + Petal.Width,data=traindata)
+r2=predict(object=r1,newdf)
+T=table(testdata[,5],r2$class)
+T
+misclaserror=1-sum(diag(T))/sum(T)
+misclaserror
+datPred<-data.frame(Species=testdata$Species,r2$x) #create data.frame
+r3 <- lda(datPred[,2:3], datPred[,1])
+x <- seq(min(datPred[,2]), max(datPred[,2]), length.out=150)
+y <- seq(min(datPred[,3]), max(datPred[,3]), length.out=150)
+Xcon <- matrix(c(rep(x,length(y)),
+                 rep(y, rep(length(x), length(y)))),,2)
+r3.pr1 <- predict(r3, Xcon)$post[, c("setosa","versicolor")] %*% c(1,1) 
+r3.pr2 <- predict(r3, Xcon)$post[, c("virginica","setosa")] %*% c(1,1)
+pr3<-data.frame(x=rep(x, length(y)), y=rep(y, each=length(x)), 
+                z1=as.vector(r3.pr1), z2=as.vector(r3.pr2))
+ggplot(datPred, aes(x=LD1, y=LD2) ) + 
+  geom_point(size = 2, aes(pch = Species,  col=Species)) +
+  geom_contour(data=pr3, aes(x=x, y=y, z=z1), breaks=c(0,.5)) + 
+  geom_contour(data=pr3, aes(x=x, y=y, z=z2), breaks=c(0,.5))+
+  labs(title="Classification Based on X1 and X4")
+#############################24(23)
+library(MASS)
+library(tidyverse)
+library(ggplot2)
+Data=iris
+traindata=Data
+testdata=Data
+Test=testdata[,c(2,3)]
+newdf <- data.frame(Sepal.Width=Test[,1],Petal.Length=Test[,2])
+r1=lda(Species ~ Sepal.Width + Petal.Length,data=traindata)
+r2=predict(object=r1,newdf)
+T=table(testdata[,5],r2$class)
+T
+misclaserror=1-sum(diag(T))/sum(T)
+misclaserror
+datPred<-data.frame(Species=testdata$Species,r2$x) #create data.frame
+r3 <- lda(datPred[,2:3], datPred[,1])
+x <- seq(min(datPred[,2]), max(datPred[,2]), length.out=150)
+y <- seq(min(datPred[,3]), max(datPred[,3]), length.out=150)
+Xcon <- matrix(c(rep(x,length(y)),
+                 rep(y, rep(length(x), length(y)))),,2)
+r3.pr1 <- predict(r3, Xcon)$post[, c("setosa","versicolor")] %*% c(1,1) 
+r3.pr2 <- predict(r3, Xcon)$post[, c("virginica","setosa")] %*% c(1,1)
+pr3<-data.frame(x=rep(x, length(y)), y=rep(y, each=length(x)), 
+                z1=as.vector(r3.pr1), z2=as.vector(r3.pr2))
+ggplot(datPred, aes(x=LD1, y=LD2) ) + 
+  geom_point(size = 2, aes(pch = Species,  col=Species)) +
+  geom_contour(data=pr3, aes(x=x, y=y, z=z1), breaks=c(0,.5)) + 
+  geom_contour(data=pr3, aes(x=x, y=y, z=z2), breaks=c(0,.5))+
+  labs(title="Classification Based on X2 and X3")
+#############################################25(24)
+library(MASS)
+library(tidyverse)
+library(ggplot2)
+Data=iris
+traindata=Data
+testdata=Data
+Test=testdata[,c(2,4)]
+newdf <- data.frame(Sepal.Width=Test[,1],Petal.Width=Test[,2])
+r1=lda(Species ~ Sepal.Width + Petal.Width,data=traindata)
+r2=predict(object=r1,newdf)
+T=table(testdata[,5],r2$class)
+T
+misclaserror=1-sum(diag(T))/sum(T)
+misclaserror
+datPred<-data.frame(Species=testdata$Species,r2$x) #create data.frame
+r3 <- lda(datPred[,2:3], datPred[,1])
+x <- seq(min(datPred[,2]), max(datPred[,2]), length.out=150)
+y <- seq(min(datPred[,3]), max(datPred[,3]), length.out=150)
+Xcon <- matrix(c(rep(x,length(y)),
+                 rep(y, rep(length(x), length(y)))),,2)
+r3.pr1 <- predict(r3, Xcon)$post[, c("setosa","versicolor")] %*% c(1,1) 
+r3.pr2 <- predict(r3, Xcon)$post[, c("virginica","setosa")] %*% c(1,1)
+pr3<-data.frame(x=rep(x, length(y)), y=rep(y, each=length(x)), 
+                z1=as.vector(r3.pr1), z2=as.vector(r3.pr2))
+ggplot(datPred, aes(x=LD1, y=LD2) ) + 
+  geom_point(size = 2, aes(pch = Species,  col=Species)) +
+  geom_contour(data=pr3, aes(x=x, y=y, z=z1), breaks=c(0,.5)) + 
+  geom_contour(data=pr3, aes(x=x, y=y, z=z2), breaks=c(0,.5))+
+  labs(title="Classification Based on X2 and X4")
+#############################################26(34)
+library(MASS)
+library(tidyverse)
+library(ggplot2)
+Data=iris
+traindata=Data
+testdata=Data
+Test=testdata[,c(3,4)]
+newdf <- data.frame(Petal.Length=Test[,1],Petal.Width=Test[,2])
+r1=lda(Species ~ Petal.Length + Petal.Width,data=traindata)
+r2=predict(object=r1,newdf)
+T=table(testdata[,5],r2$class)
+T
+misclaserror=1-sum(diag(T))/sum(T)
+misclaserror
+datPred<-data.frame(Species=testdata$Species,r2$x) #create data.frame
+r3 <- lda(datPred[,2:3], datPred[,1])
+x <- seq(min(datPred[,2]), max(datPred[,2]), length.out=150)
+y <- seq(min(datPred[,3]), max(datPred[,3]), length.out=150)
+Xcon <- matrix(c(rep(x,length(y)),
+                 rep(y, rep(length(x), length(y)))),,2)
+r3.pr1 <- predict(r3, Xcon)$post[, c("setosa","versicolor")] %*% c(1,1) 
+r3.pr2 <- predict(r3, Xcon)$post[, c("virginica","setosa")] %*% c(1,1)
+pr3<-data.frame(x=rep(x, length(y)), y=rep(y, each=length(x)), 
+                z1=as.vector(r3.pr1), z2=as.vector(r3.pr2))
+ggplot(datPred, aes(x=LD1, y=LD2) ) + 
+  geom_point(size = 2, aes(pch = Species,  col=Species)) +
+  geom_contour(data=pr3, aes(x=x, y=y, z=z1), breaks=c(0,.5)) + 
+  geom_contour(data=pr3, aes(x=x, y=y, z=z2), breaks=c(0,.5))+
+  labs(title="Classification Based on X3 and X4")
+
